@@ -8,7 +8,7 @@ load_dotenv()
 
 MONGODB_URI = os.getenv('MONGODB_URI')
 
-# MongoDB connection
+# Conexión a la base de datos
 client = MongoClient(MONGODB_URI)
 db = client['sembrando_vida']
 counter = db['counter']
@@ -20,8 +20,8 @@ def getNextValue() -> int:
 
     Returns
     -------
-    int
-        Valor del campo '_id' para la nueva variable que se agregará a la base de datos.
+    `int`
+        Valor del campo **_id** para la nueva variable que se agregará a la base de datos.
     
     """
     counter.find_one_and_update({"_id":"variable_id"}, {"$inc":{"value":1}})
@@ -30,17 +30,17 @@ def getNextValue() -> int:
 
 def appendID(data: list[dict]) -> list[dict]:
     """
-    Agrega un campo '_id' a cada variable que se agregará a la base de datos.
+    Agrega un campo **_id** a cada variable que se agregará a la base de datos.
 
     Parameters
     ----------
-    data : list[dict]
-        Lista de diccionarios (procesado de un archivo JSON) a los que se agregará el campo '_id'.
+    data : `list` [`dict`]
+        Lista de diccionarios (procesado de un archivo JSON) a los que se agregará el campo **_id**.
 
     Returns
     -------
-    list[dict]
-        Lista de diccionarios con el campo '_id' agregado.
+    `list` [`dict`]
+        Lista de diccionarios con el campo **_id** agregado.
     """
 
     for i in data:
